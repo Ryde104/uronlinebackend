@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quoteenator3000Backend", "Quoteenator3000Backend\Quoteenator3000Backend.csproj", "{43D76AC4-F96C-446F-8825-D8A6F9EE739D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43D76AC4-F96C-446F-8825-D8A6F9EE739D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D76AC4-F96C-446F-8825-D8A6F9EE739D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D76AC4-F96C-446F-8825-D8A6F9EE739D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D76AC4-F96C-446F-8825-D8A6F9EE739D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0EF1BF6-AAF4-4532-B12B-8DFD44E077D4}
+	EndGlobalSection
+EndGlobal
