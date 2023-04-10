@@ -29,7 +29,11 @@ namespace Quoteenator3000Backend
         {
 
 
-            m_api.Add(new CProductInfo { Name = "ABBIRB4600", Description = "ABB IRB 4600-20kg 2.5-meter robotic welding arm", Image = "car1.jpg" });
+            m_api.Add(new CProductInfo { Name = "ABBIRB4600", Description = "ABB IRB 4600-20kg 2.5-meter robotic welding arm", Image = "ABBIRB4600.png" });
+            m_api.Add(new CProductInfo { Name = "ABBBulseye", Description = "ABB Bullseye", Image = "ABBBulseye.png" });
+            m_api.Add(new CProductInfo { Name = "AbicorBinzelTCSPptorchcleaningstation ", Description = "AbicorBinzelTCS-Pptorchcleaningstation ", });
+            m_api.Add(new CProductInfo { Name = "Digital Gas Flow Meter ", Description = "Digital Gas Flow Meter ", });
+
 
             //CQuote cq = new CQuote();
             //cq.ObjectDesc = "new obj";
