@@ -19,7 +19,7 @@ using System.Linq;
 namespace Quoteenator3000Backend
 {
     public static class Generate
-    { 
+    {
         static List<CProductInfo> m_api = new List<CProductInfo>();
 
         [FunctionName("Generate")]
@@ -27,9 +27,9 @@ namespace Quoteenator3000Backend
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-           
 
-            m_api.Add(new CProductInfo { Name= "ABBIRB4600", Description = "ABB IRB 4600-20kg 2.5-meter robotic welding arm", Image= "booboo.jpg" });
+
+            m_api.Add(new CProductInfo { Name = "ABBIRB4600", Description = "ABB IRB 4600-20kg 2.5-meter robotic welding arm", Image = "car1.jpg" });
 
             //CQuote cq = new CQuote();
             //cq.ObjectDesc = "new obj";
@@ -181,8 +181,8 @@ namespace Quoteenator3000Backend
             var image = MainDoc.AddImage(blobClient.OpenRead());
             var picture = image.CreatePicture(150, 150);
 
-            
-            var p = tNew.Rows[0].Cells[1].InsertParagraph(cpi.Description);           
+
+            var p = tNew.Rows[0].Cells[1].InsertParagraph(cpi.Description);
 
             p = tNew.Rows[0].Cells[0].InsertParagraph("");
             p.AppendPicture(picture);
