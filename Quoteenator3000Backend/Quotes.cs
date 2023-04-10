@@ -25,7 +25,7 @@ namespace Quoteenator3000Backend
         {
             List<CGeneratedQuote> acg = new List<CGeneratedQuote>();
                 
-                BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=uro;AccountKey=eTihN8FX52PIBmrWV0wb8Le2cXEz50io3WAisRys5o0tb0WSUVz/DxvJE9DxOgcwkL4rA7Ka/jeF+ASttjwHrA==;EndpointSuffix=core.windows.net");
+                BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=urostorage;AccountKey=RPc4nXEDB05dD3JyBf7djuxvxZfz0SQJnDNIy0BTDBgtkDtZoXul4AG6np4qPMsWoiYkveXcRr4/+AStsLXYAg==;EndpointSuffix=core.windows.net");
 
             BlobContainerClient ccWrite = blobServiceClient.GetBlobContainerClient("out");
             var resultSegment = ccWrite.GetBlobsAsync().AsPages(default, 1);
@@ -35,7 +35,7 @@ namespace Quoteenator3000Backend
             {
                 foreach (BlobItem blobItem in blobPage.Values)
                 {
-                    acg.Add(new CGeneratedQuote {  Name = Path.GetFileNameWithoutExtension(blobItem.Name), URL= "https://uro.blob.core.windows.net/out/" + blobItem.Name });
+                    acg.Add(new CGeneratedQuote {  Name = Path.GetFileNameWithoutExtension(blobItem.Name), URL= "https://urostorage.blob.core.windows.net/out/" + blobItem.Name });
                     //Console.WriteLine("Blob name: {0}", blobItem.Name);
                 }
 

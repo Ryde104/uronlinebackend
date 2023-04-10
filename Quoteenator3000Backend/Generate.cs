@@ -44,7 +44,7 @@ namespace Quoteenator3000Backend
 
                 CQuote cq = JsonConvert.DeserializeObject<CQuote>(strBody);
 
-                BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=uro;AccountKey=eTihN8FX52PIBmrWV0wb8Le2cXEz50io3WAisRys5o0tb0WSUVz/DxvJE9DxOgcwkL4rA7Ka/jeF+ASttjwHrA==;EndpointSuffix=core.windows.net");
+                BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=urostorage;AccountKey=RPc4nXEDB05dD3JyBf7djuxvxZfz0SQJnDNIy0BTDBgtkDtZoXul4AG6np4qPMsWoiYkveXcRr4/+AStsLXYAg==;EndpointSuffix=core.windows.net");
                 BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("template");
                 var blobClient = containerClient.GetBlobClient("Main3.docx");
 
