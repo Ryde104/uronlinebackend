@@ -14,18 +14,22 @@ using System.Text;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace Quoteenator3000Backend
 {
     public static class Generate
-    {
+    { 
+        static List<CProductInfo> m_api = new List<CProductInfo>();
+
         [FunctionName("Generate")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
+           
 
-            
+            m_api.Add(new CProductInfo { Name= "ABBIRB4600", Description = "ABB IRB 4600-20kg 2.5-meter robotic welding arm", Image= "booboo.jpg" });
 
             //CQuote cq = new CQuote();
             //cq.ObjectDesc = "new obj";
@@ -83,7 +87,8 @@ namespace Quoteenator3000Backend
                 {
                     CProduct cp = (CProduct)item;
                     if (cp.Quantity > 0)
-                        AddDocument(cp.Image, cp.ItemDescription, docMain);
+                        AddDocument(cp.Name, docMain);
+                    //AddDocument(cp.Image, cp.ItemDescription, docMain);
                 }
 
 
@@ -157,11 +162,16 @@ namespace Quoteenator3000Backend
             return CustomerName + "-" + DateTime.Now.ToString("MMddyyyy");
         }
 
-        private static void AddDocument(string Image, string Text, DocX MainDoc)
+        //private static void AddDocument(string Image, string Text, DocX MainDoc)
+        private static void AddDocument(string Name, DocX MainDoc)
         {
-            BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=uro;AccountKey=eTihN8FX52PIBmrWV0wb8Le2cXEz50io3WAisRys5o0tb0WSUVz/DxvJE9DxOgcwkL4rA7Ka/jeF+ASttjwHrA==;EndpointSuffix=core.windows.net");
+            CProductInfo cpi = m_api.FirstOrDefault(v => v.Name == Name);
+            if (cpi == null) { return; }
+
+
+            BlobServiceClient blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=urostorage;AccountKey=RPc4nXEDB05dD3JyBf7djuxvxZfz0SQJnDNIy0BTDBgtkDtZoXul4AG6np4qPMsWoiYkveXcRr4/+AStsLXYAg==;EndpointSuffix=core.windows.net");
             BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("template");
-            var blobClient = containerClient.GetBlobClient(Image);
+            var blobClient = containerClient.GetBlobClient(cpi.Image);
 
 
             var tNew = MainDoc.AddTable(1, 2);
@@ -172,7 +182,7 @@ namespace Quoteenator3000Backend
             var picture = image.CreatePicture(150, 150);
 
             
-            var p = tNew.Rows[0].Cells[1].InsertParagraph(Text);           
+            var p = tNew.Rows[0].Cells[1].InsertParagraph(cpi.Description);           
 
             p = tNew.Rows[0].Cells[0].InsertParagraph("");
             p.AppendPicture(picture);
@@ -183,5 +193,12 @@ namespace Quoteenator3000Backend
             vt.InsertTableAfterSelf(tNew);
 
         }
+    }
+
+    public class CProductInfo
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
     }
 }
