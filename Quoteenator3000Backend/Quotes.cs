@@ -36,19 +36,23 @@ namespace Quoteenator3000Backend
                 foreach (BlobItem blobItem in blobPage.Values)
                 {
                     acg.Add(new CGeneratedQuote { CreatedDate= blobItem.Properties.CreatedOn.Value.UtcDateTime, Name = Path.GetFileNameWithoutExtension(blobItem.Name), URL= "https://urostorage.blob.core.windows.net/out/" + blobItem.Name });
+                    //acg.Add(new CGeneratedQuote {  Name = Path.GetFileNameWithoutExtension(blobItem.Name), URL = "https://urostorage.blob.core.windows.net/out/" + blobItem.Name });
                     //Console.WriteLine("Blob name: {0}", blobItem.Name);
                 }
 
                 //Console.WriteLine();
             }
 
-            
 
 
-            //CGeneratedQuotes v = new CGeneratedQuotes();
-            //v.Quotes = Enumerable.Reverse(acg).ToArray();
+            List<CGeneratedQuote> acgReturn = acg.OrderBy(v => v.CreatedDate).ToList();
 
-            return new JsonResult(acg.OrderByDescending(v => v.CreatedDate).ToArray().Take(10));
+            //return new JsonResult(acg.OrderByDescending(v => v.CreatedDate).ToArray().Take(10));
+
+            CGeneratedQuotes v = new CGeneratedQuotes();
+            v.Quotes = Enumerable.Reverse(acgReturn).Take(10).ToArray();
+
+            return new JsonResult(v);
         }
     }
 
