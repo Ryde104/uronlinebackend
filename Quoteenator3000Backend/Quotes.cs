@@ -35,17 +35,20 @@ namespace Quoteenator3000Backend
             {
                 foreach (BlobItem blobItem in blobPage.Values)
                 {
-                    acg.Add(new CGeneratedQuote {  Name = Path.GetFileNameWithoutExtension(blobItem.Name), URL= "https://urostorage.blob.core.windows.net/out/" + blobItem.Name });
+                    acg.Add(new CGeneratedQuote { CreatedDate= blobItem.Properties.CreatedOn.Value.UtcDateTime, Name = Path.GetFileNameWithoutExtension(blobItem.Name), URL= "https://urostorage.blob.core.windows.net/out/" + blobItem.Name });
                     //Console.WriteLine("Blob name: {0}", blobItem.Name);
                 }
 
                 //Console.WriteLine();
             }
 
-            CGeneratedQuotes v = new CGeneratedQuotes();
-            v.Quotes = Enumerable.Reverse(acg).ToArray();
+            
 
-            return new JsonResult(v);
+
+            //CGeneratedQuotes v = new CGeneratedQuotes();
+            //v.Quotes = Enumerable.Reverse(acg).ToArray();
+
+            return new JsonResult(acg.OrderByDescending(v => v.CreatedDate).ToArray().Take(10));
         }
     }
 
@@ -58,5 +61,6 @@ namespace Quoteenator3000Backend
     {
         public string URL { get; set; }
         public string Name { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

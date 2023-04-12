@@ -31,8 +31,8 @@ namespace Quoteenator3000Backend
 
             m_api.Add(new CProductInfo { Name = "ABBIRB4600", Description = "ABB IRB 4600-20kg 2.5-meter robotic welding arm", Image = "ABBIRB4600.png" });
             m_api.Add(new CProductInfo { Name = "ABBBullsEye", Description = "ABB Bullseye", Image = "ABBBulseye.png" });
-            m_api.Add(new CProductInfo { Name = "AbicorBinzel ", Description = "AbicorBinzelTCS-Pptorchcleaningstation ", });
-            m_api.Add(new CProductInfo { Name = "Digitalgasflowmeter", Description = "Digital Gas Flow Meter ", });
+            m_api.Add(new CProductInfo { Name = "AbicorBinzel ", Description = "AbicorBinzelTCS-Pptorchcleaningstation", });
+            m_api.Add(new CProductInfo { Name = "Digitalgasflowmeter", Description = "Digital Gas Flow Meter", });
 
 
             //CQuote cq = new CQuote();
@@ -181,16 +181,16 @@ namespace Quoteenator3000Backend
             var tNew = MainDoc.AddTable(1, 2);
             tNew.Design = TableDesign.TableGrid;
 
+            if (cpi.Image != null)
+            {
+                var image = MainDoc.AddImage(blobClient.OpenRead());
+                var picture = image.CreatePicture(150, 150);
+            
+                var p = tNew.Rows[0].Cells[1].InsertParagraph(cpi.Description);
 
-            var image = MainDoc.AddImage(blobClient.OpenRead());
-            var picture = image.CreatePicture(150, 150);
-
-
-            var p = tNew.Rows[0].Cells[1].InsertParagraph(cpi.Description);
-
-            p = tNew.Rows[0].Cells[0].InsertParagraph("");
-            p.AppendPicture(picture);
-
+                p = tNew.Rows[0].Cells[0].InsertParagraph("");
+                p.AppendPicture(picture);
+            }
 
 
             var vt = MainDoc.Tables[1];
